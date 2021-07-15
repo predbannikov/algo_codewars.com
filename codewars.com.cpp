@@ -38,12 +38,11 @@ std::string stringify(Node* list)
 {
 	std::string str;
 	while (list != nullptr) {
-		if (list->next != nullptr)
-			str += std::to_string(list->data);
+		str += std::to_string(list->data);
 		str += " -> ";
 		list = list->next;
 	}
-	str += std::to_string(list->data) + "nullptr";
+	str += "nullptr";
 	return str;
 }
 
