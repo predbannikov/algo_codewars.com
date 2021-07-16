@@ -3,6 +3,7 @@
 
 #include "codewars.com.h"
 #include <string>
+#include <vector>
 
 class Node {
 public:
@@ -46,8 +47,20 @@ std::string stringify(Node* list)
 	return str;
 }
 
+std::pair<std::size_t, std::size_t> two_sum(const std::vector<int>& numbers, int target) {
+	for (size_t i = 0; i < numbers.size() - 1; i++) {
+		for (size_t j = i + 1; j < numbers.size(); j++) {
+			if (numbers[i] + numbers[j] == target)
+				return { i, j };
+		}
+	}
+	return { 0, 0 };
+}
+
 int main()
 {
-	std::cout << get_sum(5, -1);
+	std::pair<int, int> pair = two_sum({ 1, 2, 3 }, 4);
+	std::cout << " ";
+	//std::cout << get_sum(5, -1);
 	return 0;
 }
