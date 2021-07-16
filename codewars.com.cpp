@@ -57,9 +57,24 @@ std::pair<std::size_t, std::size_t> two_sum(const std::vector<int>& numbers, int
 	return { 0, 0 };
 }
 
+
+int digital_root(int n)
+{
+	int sum = 0;
+
+	while (n != 0) {
+		sum += n % 10;
+		n /= 10;
+	}
+	if (sum > 9)
+		sum = digital_root(sum);
+	return sum;
+}
+
 int main()
 {
-	std::pair<int, int> pair = two_sum({ 1, 2, 3 }, 4);
+	std::cout << digital_root(167346);
+	//std::pair<int, int> pair = two_sum({ 1, 2, 3 }, 4);
 	std::cout << " ";
 	//std::cout << get_sum(5, -1);
 	return 0;
