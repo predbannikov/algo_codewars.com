@@ -4,6 +4,7 @@
 #include "codewars.com.h"
 #include <string>
 #include <vector>
+#include <algorithm>
 
 class Node {
 public:
@@ -61,7 +62,6 @@ std::pair<std::size_t, std::size_t> two_sum(const std::vector<int>& numbers, int
 int digital_root(int n)
 {
 	int sum = 0;
-
 	while (n != 0) {
 		sum += n % 10;
 		n /= 10;
@@ -71,9 +71,32 @@ int digital_root(int n)
 	return sum;
 }
 
+class Same {
+public:
+	static bool comp(std::vector<int>& a, std::vector<int>& b) {
+		if (a.empty() || b.empty())
+			return false;
+		if (a.size() != b.size())
+			return false;
+		std::vector<int> squars = a;
+		std::for_each(squars.begin(), squars.end(), [](int& d) {d *= d; });
+		for (size_t i = 0; i < b.size(); i++) {
+			auto it = std::find(squars.begin(), squars.end(), b[i]);
+			if(it != squars.end())
+				squars.erase(it);
+		}
+		return squars.empty();
+	}
+};
+
+
 int main()
 {
-	std::cout << digital_root(167346);
+	Same s;
+	std::vector<int> a{ 121, 144, 19, 161, 19, 144, 19 };
+	std::vector<int> b{ 14641, 20736, 361, 25921, 361, 20736, 361, 121 };
+	std::cout << s.comp(a, b) << std::endl;
+	//std::cout << digital_root(167346);
 	//std::pair<int, int> pair = two_sum({ 1, 2, 3 }, 4);
 	std::cout << " ";
 	//std::cout << get_sum(5, -1);
