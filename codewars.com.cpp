@@ -74,8 +74,6 @@ int digital_root(int n)
 class Same {
 public:
 	static bool comp(std::vector<int>& a, std::vector<int>& b) {
-		if (a.empty() || b.empty())
-			return false;
 		if (a.size() != b.size())
 			return false;
 		std::vector<int> squars = a;
